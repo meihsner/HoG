@@ -3,7 +3,6 @@ import numpy as np
 import copy
 from matplotlib import pyplot as plt
 import os
-from sklearn.svm import LinearSVC
 import math
 
 
@@ -285,9 +284,6 @@ def histogram_of_gradients(magnitude, angle):
                     elif an[i, j] in interval9:
                         bin160, bin0 = histogram_proportions(interval9, an[i, j], ma[i, j], bin160, bin0)
 
-            # hist = [len(bin0), len(bin20), len(bin40), len(bin60), len(bin80), len(bin100), len(bin120), len(bin140),
-            #         len(bin160)]
-
             hist = [(np.sum(bin0)), (np.sum(bin20)), (np.sum(bin40)), (np.sum(bin60)), (np.sum(bin80)),
                     (np.sum(bin100)), (np.sum(bin120)), (np.sum(bin140)), (np.sum(bin160))]
 
@@ -405,7 +401,6 @@ def image_vis(histogram):
          vertical_image[5], vertical_image[6], vertical_image[7], vertical_image[8], vertical_image[9],
          vertical_image[10], vertical_image[11], vertical_image[12], vertical_image[13], vertical_image[14],
          vertical_image[15]])
-
     return image_visualization
 
 
@@ -450,44 +445,13 @@ def load_images_from_folder(folder):
     return images, names
 
 
-def predicionSVM():
-    folder = "C:/Users/Admin/PycharmProjects/HoG/input"
-    SVM_input, names = load_images_from_folder(folder)
-    images = []
-    labels = ['1', '1', '1', '1', '1', '1', '0', '0', '0', '0']
-    for i in range(0, len(SVM_input)):
-        hog_img, image_vectors, hog_desc = HOG(SVM_input[i])
-        images.append(hog_desc)
-        # labels.append(names[i])
-    print('Training on train images...')
-    svm_model = LinearSVC(random_state=42, tol=1e-5)
-    svm_model.fit(images, labels)
-
-    folder2 = "C:/Users/Admin/PycharmProjects/HoG/test_images"
-    test, labelz = load_images_from_folder(folder2)
-    print('Evaluating on test images...')
-    for j in range(0, len(test)):
-        hog_image, image_vectors, hog_desc_test = HOG(test[j])
-        hog_desc_test = np.array(hog_desc_test)
-        pred = svm_model.predict(hog_desc_test.reshape(1, -1))[0]
-        cv2.imshow('HOG Image', image_vectors)
-        cv2.waitKey(0)
-        cv2.imshow('HOG Image', hog_image)
-        cv2.waitKey(0)
-        N, M, D = test[j].shape
-        test[j] = cv2.resize(test[j], (3*M, 3*N))
-        cv2.putText(test[j], pred.title(), (20, 40), cv2.FONT_HERSHEY_SIMPLEX, 1.0,
-                    (0, 0, 255), 2)
-        cv2.imshow('Test Image', test[j])
-        cv2.waitKey(0)
-
 
 def main():
-    img = cv2.imread("runner.png")
+    img = cv2.imread("example_images/example1.png")
     HOG_image, image_vectors, FeatureDescriptor = HOG(img)
     cv2.imshow('HOG image', HOG_image)
     cv2.waitKey(0)
-    # predicionSVM()
 
 
-main()
+if __name__ == '__main__':
+    main()

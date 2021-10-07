@@ -8,7 +8,7 @@ The main assumption of the project was to learn the function of reading the feat
 - *NumPy* - mathematical operations (1.21.2),
 - *matplotlib* - data visualization (3.4.3),
 - *sklrearn* - feature vector testing using Linear Support Vector Classification (1.0),
-- other built-in libraries, such as: os, math, copy.
+- other built-in libraries, such as: *os*, *math*, *copy*.
 
 # Sample results of the developed algorithm:
 The function has been limited to the aspect ratio presented in the article and to the creation of 8x8 histograms.

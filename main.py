@@ -483,7 +483,7 @@ def predicionSVM():
 
 
 def main():
-    img = cv2.imread("runner.png")
+    img = cv2.imread("example_images/example1.png")
     HOG_image, image_vectors, FeatureDescriptor = HOG(img)
     cv2.imshow('HOG image', HOG_image)
     cv2.waitKey(0)

@@ -307,9 +307,9 @@ def visualize_histogram(histogram, i, j):
     ind = np.arange(N)
     width = 0.50
     plt.bar(ind, number_bins_hist, width, color='red')
-    plt.title('Przykładowy histogram')
-    plt.xlabel('Kierunek')
-    plt.ylabel('Zliczenia')
+    plt.title('Example histogram')
+    plt.xlabel('Direction')
+    plt.ylabel('Count')
     plt.grid(True)
     plt.xticks(ind, ('0', '20', '40', '60', '80', '100', '120', '140', '160'))
     plt.show()
@@ -443,7 +443,6 @@ def load_images_from_folder(folder):
         if img is not None:
             images.append(img)
     return images, names
-
 
 
 def main():
